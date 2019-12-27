@@ -4,22 +4,31 @@ import requests
 import CollatzSequence
 import json
 import sys
+import test_functions
 
-# api-endpoint 
-URL = "http://127.0.0.1:5000/resources/collatz"
-#num=input() 
-#num = sys.argv[1]
-#print('type' ,type(num))
+print "Inicio de Tests.."
+print "--------"
+print "Test 1.."
+test_functions.test_1_(4)
+print "--------"
+print "Test 2.."
+test_functions.test_2_('dsda')
+print "--------"
+print "Test 3.."
+test_functions.test_3_(0)
+print "--------"
+print "Test 4.."
+test_functions.test_4_('')
+print "--------"
+print "Test 5.."
+test_functions.test_5_(' ')
+print "--------"
+print "Test 6.."
+test_functions.test_6_(-1)
+print "--------"
+print "Test 7.."
+test_functions.test_7_(32)
+print "--------"
+print "Test Finalizados...."
 
-array=['da',4,13,0,'',' ',5]
-
-for num in array:
-	PARAMS = {'num':num} 
-	response = requests.get(url = URL, params = PARAMS) 
-	result = response.json() 
-	test = CollatzSequence.collatz_sequence(num)
-	print('TEST : ', test)
-	print('API: ', result)
-
-	print (CollatzSequence.compare(test,result))
 

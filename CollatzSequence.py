@@ -1,3 +1,5 @@
+import functools
+
 def collatz(integer):
 	module=integer%2
 	if module == 0:
@@ -10,8 +12,6 @@ def collatz_sequence(integer):
 	count = 0
 	sequence.append({'indx {}'.format(count):integer})
 	count = count +1
-	if integer == '' or  integer==' ' or type(integer)==str:
-		return "not number provided, please entire a number"
 	if integer == 1:
 		sequence.append({'indx {}'.format(count):collatz(integer)}) 
 		integer = collatz(integer)
@@ -24,9 +24,6 @@ def collatz_sequence(integer):
 		count = count +1
 
 		return sequence
-
-	if integer == 0:
-		return "Error Not valid number field provided. Please specify an entire number."
 	else:
 		while integer!=1:
 			collatz(integer)
@@ -38,10 +35,12 @@ def collatz_sequence(integer):
 
 
 def compare(test,result):
-	count =0
-	status = 'test pass'
-	for obj in test:
-		if obj not in result:
-			status='error'
+	if functools.reduce(lambda i, j : i and j, map(lambda m, k: m == k, test, result), True) :  
+		status=' - - PASS - -'
+	else:
+		status=' - - ERROR - -'
 
 	return status
+
+
+
